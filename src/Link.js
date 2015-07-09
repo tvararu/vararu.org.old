@@ -1,5 +1,5 @@
-const React = require('react')
-const Radium = require('radium')
+import React from 'react'
+import Radium from 'radium'
 
 const styles = {
   color: 'red',
@@ -10,7 +10,7 @@ const styles = {
 }
 
 @Radium
-class Link extends React.Component {
+export default class Link extends React.Component {
   static displayName = 'Link'
   static propTypes = {
     href: React.PropTypes.string.isRequired,
@@ -20,5 +20,3 @@ class Link extends React.Component {
     return <a style={styles} href={this.props.href}>{ this.props.children }</a>
   }
 }
-
-export default Link

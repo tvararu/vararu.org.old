@@ -1,7 +1,7 @@
-const React = require('react')
-const Link = require('./Link')
+import React from 'react'
+import Link from './Link'
 
-class Home extends React.Component {
+export default class Home extends React.Component {
   static displayName = 'Home'
   render () {
     return (<div>
@@ -12,5 +12,3 @@ class Home extends React.Component {
     </div>)
   }
 }
-
-export default Home

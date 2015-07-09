@@ -1,7 +1,7 @@
-const React = require('react')
-const Home = require('./Home')
+import React from 'react'
+import Home from './Home'
 
-class App extends React.Component {
+export default class App extends React.Component {
   static displayName = 'App'
   render () {
     return <Home />
@@ -9,5 +9,3 @@ class App extends React.Component {
 }
 
 React.render(<App />, document.body)
-
-export default App
