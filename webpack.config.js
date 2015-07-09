@@ -7,6 +7,6 @@ var config = getConfig({
 })
 
 // #YOLO.
-config.module.loaders[0].loaders[1] = 'babel-loader?optional[]=es7.decorators'
+config.module.loaders[0].loaders[1] = 'babel-loader?stage=0'
 
 module.exports = config

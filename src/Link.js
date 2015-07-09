@@ -11,14 +11,13 @@ const styles = {
 
 @Radium
 class Link extends React.Component {
+  static propTypes = {
+    href: React.PropTypes.string.isRequired,
+    children: React.PropTypes.any.isRequired
+  }
   render () {
     return <a style={styles} href={this.props.href}>{ this.props.children }</a>
   }
-}
-
-Link.propTypes = {
-  href: React.PropTypes.string.isRequired,
-  children: React.PropTypes.any.isRequired
 }
 
 export default Link
