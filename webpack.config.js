@@ -6,4 +6,7 @@ var config = getConfig({
   clearBeforeBuild: true
 })
 
+// #YOLO.
+config.module.loaders[0].loaders[1] = 'babel-loader?optional[]=es7.decorators'
+
 module.exports = config
