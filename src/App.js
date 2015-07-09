@@ -1,15 +1,16 @@
 const React = require('react')
+const Home = require('./Home')
 
 class App extends React.Component {
-  render() {
-    return <div>Hello world!</div>
+  render () {
+    return <Home />
   }
 }
 
-let main = document.createElement('div')
+const main = document.createElement('div')
 main.id = 'main'
 document.body.appendChild(main)
 
 React.render(<App />, main)
 
-export default App;
+export default App
