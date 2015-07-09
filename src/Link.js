@@ -11,6 +11,7 @@ const styles = {
 
 @Radium
 class Link extends React.Component {
+  static displayName = 'Link'
   static propTypes = {
     href: React.PropTypes.string.isRequired,
     children: React.PropTypes.any.isRequired
