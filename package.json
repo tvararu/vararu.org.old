@@ -30,5 +30,8 @@
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1",
     "yeticss": "^7.0.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }
