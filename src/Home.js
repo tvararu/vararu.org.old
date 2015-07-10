@@ -1,6 +1,6 @@
+/* global fetch */
 import React from 'react'
 import Link from './Link'
-const fetch = window.fetch
 
 export default class Home extends React.Component {
   static displayName = 'Home'
