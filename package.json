@@ -27,6 +27,7 @@
     "radium": "^0.13.2",
     "react": "^0.13.3",
     "react-hot-loader": "^1.2.8",
+    "standard": "^4.5.2",
     "style-loader": "^0.12.3",
     "stylus-loader": "^1.2.1",
     "url-loader": "^0.5.6",
