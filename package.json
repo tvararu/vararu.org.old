@@ -40,9 +40,6 @@
     "yeticss": "^7.0.0"
   },
   "standard": {
-    "global": [
-      "fetch"
-    ],
     "parser": "babel-eslint"
   },
   "pre-commit": [
