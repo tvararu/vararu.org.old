@@ -44,5 +44,8 @@
   },
   "pre-commit": [
     "test"
-  ]
+  ],
+  "dependencies": {
+    "normalize.css": "^3.0.3"
+  }
 }

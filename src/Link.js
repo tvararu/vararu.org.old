@@ -2,11 +2,11 @@ import React from 'react'
 import Radium from 'radium'
 
 const styles = {
-  color: 'red',
-  transition: 'color 0.3s ease',
-  ':hover': {
-    color: 'blue'
-  }
+  alignContent: 'center',
+  background: '#EEE',
+  height: '50px',
+  justifyContent: 'center',
+  width: '300px'
 }
 
 @Radium
