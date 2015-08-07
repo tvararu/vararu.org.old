@@ -4,6 +4,8 @@ import Link from './Link'
 import { vr } from './utils'
 import glassesGreyImgSrc from './img/logo-main-grey.png'
 import glassesWhiteImgSrc from './img/logo-main-white.png'
+import { Spring } from 'react-motion'
+import _ from 'lodash'
 
 const globalStyles = {
   '*, *:before, *:after': {
@@ -65,6 +67,13 @@ const glassesWhiteStyles = Object.assign({}, glassesStyles, {
 @Radium
 export default class Home extends React.Component {
   static displayName = 'Home'
+  getEndValue (prevValue) {
+    return prevValue.map((_, i) => {
+      return i === 0
+        ? {val: 0}
+        : {val: prevValue[i - 1].val}
+    })
+  }
   render () {
     return (
     <div style={homeStyles}>
@@ -75,10 +84,18 @@ export default class Home extends React.Component {
           <img style={glassesWhiteStyles} src={glassesWhiteImgSrc} alt='' />
         </div>
         <h1 style={headerStyles}>Theodor Vararu</h1>
-        <Link href='https://github.com/tvararu'>GitHub</Link>
-        <Link href='https://vararu.org/cv'>Resumé</Link>
-        <Link href='https://blog.vararu.org/'>Blog</Link>
-        <Link href='mailto:theo@vararu.org'>Email</Link>
+        <Spring
+          defaultValue={_.range(4).map(() => ({val: 250}))}
+          endValue={this.getEndValue}>
+          {interpolated => {
+            return (<div>
+              <Link style={{transform: `translate3d(0, ${interpolated[0].val}px, 0)`}} href='https://vararu.org/cv'>Resumé</Link>
+              <Link style={{transform: `translate3d(0, ${interpolated[1].val}px, 0)`}} href='https://blog.vararu.org/'>Blog</Link>
+              <Link style={{transform: `translate3d(0, ${interpolated[2].val}px, 0)`}} href='https://github.com/tvararu'>GitHub</Link>
+              <Link style={{transform: `translate3d(0, ${interpolated[3].val}px, 0)`}} href='mailto:theo@vararu.org'>Email</Link>
+            </div>)
+          }}
+        </Spring>
       </div>
     </div>)
   }

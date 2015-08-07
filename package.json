@@ -24,10 +24,11 @@
     "file-loader": "^0.8.4",
     "hjs-webpack": "^2.9.0",
     "json-loader": "^0.5.2",
+    "lodash": "^3.10.1",
     "node-libs-browser": "^0.5.2",
     "postcss-loader": "^0.5.1",
     "prepush-githook": "^0.1.1",
-    "radium": "^0.13.2",
+    "radium": "^0.13.7",
     "react": "^0.13.3",
     "react-hot-loader": "^1.2.8",
     "standard": "^4.5.2",
@@ -46,6 +47,7 @@
     "test"
   ],
   "dependencies": {
-    "normalize.css": "^3.0.3"
+    "normalize.css": "^3.0.3",
+    "react-motion": "^0.2.7"
   }
 }

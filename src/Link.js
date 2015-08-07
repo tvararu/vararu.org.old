@@ -2,7 +2,7 @@ import React from 'react'
 import Radium from 'radium'
 import { vr } from './utils'
 
-const styles = {
+const linkStyles = {
   alignItems: 'center',
   color: '#333',
   display: 'flex',
@@ -22,6 +22,7 @@ export default class Link extends React.Component {
     children: React.PropTypes.any.isRequired
   }
   render () {
+    const styles = Object.assign({}, linkStyles, this.props.style)
     return <a style={styles} href={this.props.href}>{ this.props.children }</a>
   }
 }
