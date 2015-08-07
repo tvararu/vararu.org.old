@@ -64,39 +64,44 @@ const glassesWhiteStyles = Object.assign({}, glassesStyles, {
   transform: 'translateZ(10px)'
 })
 
+const animationStyles = (tweeningCollection) => {
+  return {
+    opacity: `${tweeningCollection.opacity.val}`,
+    transform: `translate3d(0, ${tweeningCollection.y.val}px, 0)`
+  }
+}
+
 @Radium
 export default class Home extends React.Component {
   static displayName = 'Home'
   getEndValue (prevValue) {
     return prevValue.map((_, i) => {
       return i === 0
-        ? {val: 0}
-        : {val: prevValue[i - 1].val}
+        ? {y: {val: 0}, opacity: {val: 1}}
+        : {y: {val: prevValue[i - 1].y.val}, opacity: {val: prevValue[i - 1].opacity.val}}
     })
   }
   render () {
     return (
     <div style={homeStyles}>
       <Style rules={globalStyles} />
-      <div style={containerStyles}>
-        <div style={glassesContainerStyles}>
-          <img style={glassesGreyStyles} src={glassesGreyImgSrc} alt='' />
-          <img style={glassesWhiteStyles} src={glassesWhiteImgSrc} alt='' />
-        </div>
-        <h1 style={headerStyles}>Theodor Vararu</h1>
-        <Spring
-          defaultValue={_.range(4).map(() => ({val: 250}))}
-          endValue={this.getEndValue}>
-          {interpolated => {
-            return (<div>
-              <Link style={{transform: `translate3d(0, ${interpolated[0].val}px, 0)`}} href='https://vararu.org/cv'>Resumé</Link>
-              <Link style={{transform: `translate3d(0, ${interpolated[1].val}px, 0)`}} href='https://blog.vararu.org/'>Blog</Link>
-              <Link style={{transform: `translate3d(0, ${interpolated[2].val}px, 0)`}} href='https://github.com/tvararu'>GitHub</Link>
-              <Link style={{transform: `translate3d(0, ${interpolated[3].val}px, 0)`}} href='mailto:theo@vararu.org'>Email</Link>
-            </div>)
-          }}
-        </Spring>
-      </div>
+      <Spring
+        defaultValue={_.range(5).map(() => ({y: {val: 150}, opacity: {val: 0}}))}
+        endValue={this.getEndValue}>
+        {interpolated =>
+          <div style={containerStyles}>
+            <div style={glassesContainerStyles}>
+              <img style={glassesGreyStyles} src={glassesGreyImgSrc} alt='' />
+              <img style={glassesWhiteStyles} src={glassesWhiteImgSrc} alt='' />
+            </div>
+            <h1 style={Object.assign({}, headerStyles, animationStyles(interpolated[0]))}>Theodor Vararu</h1>
+            <Link style={animationStyles(interpolated[1])} href='https://vararu.org/cv'>Resumé</Link>
+            <Link style={animationStyles(interpolated[2])} href='https://blog.vararu.org/'>Blog</Link>
+            <Link style={animationStyles(interpolated[3])} href='https://github.com/tvararu'>GitHub</Link>
+            <Link style={animationStyles(interpolated[4])} href='mailto:theo@vararu.org'>Email</Link>
+          </div>
+        }
+      </Spring>
     </div>)
   }
 }
