@@ -3,12 +3,13 @@ import Radium from 'radium'
 
 const styles = {
   alignItems: 'center',
-  background: '#EEE',
+  color: '#333',
   display: 'flex',
-  height: '50px',
+  height: '60px',
   justifyContent: 'center',
   textAlign: 'center',
-  width: '300px'
+  textDecoration: 'none',
+  width: '120px'
 }
 
 @Radium

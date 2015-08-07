@@ -42,7 +42,9 @@
   "standard": {
     "parser": "babel-eslint"
   },
-  "prepush": ["test"],
+  "prepush": [
+    "test"
+  ],
   "dependencies": {
     "normalize.css": "^3.0.3"
   }
