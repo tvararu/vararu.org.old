@@ -18,8 +18,9 @@ const linkStyles = {
 export default class Link extends React.Component {
   static displayName = 'Link'
   static propTypes = {
+    children: React.PropTypes.any.isRequired,
     href: React.PropTypes.string.isRequired,
-    children: React.PropTypes.any.isRequired
+    style: React.PropTypes.object
   }
   render () {
     const styles = Object.assign({}, linkStyles, this.props.style)
