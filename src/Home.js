@@ -3,6 +3,17 @@ import Radium, { Style } from 'radium'
 import Link from './Link'
 import { vr } from './utils'
 import glassesGreyImgSrc from './img/logo-main-grey.png'
+import glassesWhiteImgSrc from './img/logo-main-white.png'
+
+const globalStyles = {
+  '*, *:before, *:after': {
+    boxSizing: 'border-box'
+  },
+  'html, body': {
+    height: '100%',
+    width: '100%'
+  }
+}
 
 const homeStyles = {
   alignItems: 'center',
@@ -31,10 +42,25 @@ const headerStyles = {
   padding: `${vr(2)} 0 ${vr(2)} 0`
 }
 
-const glassesGreyStyles = {
+const glassesContainerStyles = {
+  height: vr(7),
   padding: `${17}px 0 ${17}px 0`,
+  position: 'relative',
   width: vr(12)
 }
+
+const glassesStyles = {
+  position: 'absolute',
+  width: '100%'
+}
+
+const glassesGreyStyles = Object.assign({}, glassesStyles, {
+  transform: 'scale(0.99)'
+})
+
+const glassesWhiteStyles = Object.assign({}, glassesStyles, {
+  transform: 'translateZ(10px)'
+})
 
 @Radium
 export default class Home extends React.Component {
@@ -42,14 +68,12 @@ export default class Home extends React.Component {
   render () {
     return (
     <div style={homeStyles}>
+      <Style rules={globalStyles} />
       <div style={containerStyles}>
-        <img style={glassesGreyStyles} src={glassesGreyImgSrc} alt='' />
-        <Style rules={{
-          'html, body': {
-            height: '100%',
-            width: '100%'
-          }
-        }} />
+        <div style={glassesContainerStyles}>
+          <img style={glassesGreyStyles} src={glassesGreyImgSrc} alt='' />
+          <img style={glassesWhiteStyles} src={glassesWhiteImgSrc} alt='' />
+        </div>
         <h1 style={headerStyles}>Theodor Vararu</h1>
         <Link href='https://github.com/tvararu'>GitHub</Link>
         <Link href='https://vararu.org/cv'>Resumé</Link>
