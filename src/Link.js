@@ -1,15 +1,17 @@
 import React from 'react'
 import Radium from 'radium'
+import { vr } from './utils'
 
 const styles = {
   alignItems: 'center',
   color: '#333',
   display: 'flex',
-  height: '60px',
+  height: vr(3),
+  fontWeight: '600',
   justifyContent: 'center',
   textAlign: 'center',
   textDecoration: 'none',
-  width: '120px'
+  width: vr(6)
 }
 
 @Radium
