@@ -2,6 +2,7 @@ import React from 'react'
 import Radium, { Style } from 'radium'
 import Link from './Link'
 import { vr } from './utils'
+import glassesGreyImgSrc from './img/logo-main-grey.png'
 
 const homeStyles = {
   alignItems: 'center',
@@ -18,7 +19,7 @@ const homeStyles = {
 }
 
 const containerStyles = Object.assign({}, homeStyles, {
-  height: vr(6),
+  height: vr(7 + 6 + 3 + 3),
   width: vr(12)
 })
 
@@ -26,7 +27,13 @@ const headerStyles = {
   fontSize: '2em',
   lineHeight: '1.25em',
   fontWeight: '400',
-  margin: `0 0 ${vr(2)} 0`
+  margin: 0,
+  padding: `${vr(2)} 0 ${vr(2)} 0`
+}
+
+const glassesGreyStyles = {
+  padding: `${17}px 0 ${17}px 0`,
+  width: vr(12)
 }
 
 @Radium
@@ -36,6 +43,7 @@ export default class Home extends React.Component {
     return (
     <div style={homeStyles}>
       <div style={containerStyles}>
+        <img style={glassesGreyStyles} src={glassesGreyImgSrc} alt='' />
         <Style rules={{
           'html, body': {
             height: '100%',
