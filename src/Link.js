@@ -2,10 +2,12 @@ import React from 'react'
 import Radium from 'radium'
 
 const styles = {
-  alignContent: 'center',
+  alignItems: 'center',
   background: '#EEE',
+  display: 'flex',
   height: '50px',
   justifyContent: 'center',
+  textAlign: 'center',
   width: '300px'
 }
 
