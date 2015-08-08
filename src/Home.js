@@ -56,14 +56,6 @@ const glassesStyles = {
   width: '100%'
 }
 
-const glassesGreyStyles = Object.assign({}, glassesStyles, {
-  transform: 'scale(0.99)'
-})
-
-const glassesWhiteStyles = Object.assign({}, glassesStyles, {
-  transform: 'translateZ(10px)'
-})
-
 const animationStyles = (tweeningCollection) => {
   return {
     opacity: `${tweeningCollection.opacity.val}`,
@@ -75,30 +67,56 @@ const animationStyles = (tweeningCollection) => {
 export default class Home extends React.Component {
   static displayName = 'Home'
   getEndValue (prevValue) {
-    return prevValue.map((_, i) => {
-      return i === 0
-        ? {y: {val: 0}, opacity: {val: 1}}
-        : {y: {val: prevValue[i - 1].y.val}, opacity: {val: prevValue[i - 1].opacity.val}}
-    })
+    return {
+      words: prevValue.words.map((_, i) => {
+        return i === 0
+          ? {y: {val: 0}, opacity: {val: 1}}
+          : {y: {val: prevValue.words[i - 1].y.val}, opacity: {val: prevValue.words[i - 1].opacity.val}}
+      }),
+      glasses: prevValue.glasses.map((_, i) => {
+        return i === 0
+          ? {
+            y: {val: 0},
+            opacity: {val: 1}
+          }
+          : {
+            y: {val: prevValue.glasses[i - 1].y.val, config: [500, 20]},
+            opacity: {val: prevValue.glasses[i - 1].opacity.val, config: [500, 20]}
+          }
+      })
+    }
   }
   render () {
     return (
     <div style={homeStyles}>
       <Style rules={globalStyles} />
       <Spring
-        defaultValue={_.range(5).map(() => ({y: {val: 150}, opacity: {val: 0}}))}
+        defaultValue={{
+          words: _.range(5).map(() => ({y: {val: 150}, opacity: {val: 0}})),
+          glasses: _.range(2).map(() => ({y: {val: -150}, opacity: {val: 0}}))
+        }}
         endValue={this.getEndValue}>
         {interpolated =>
           <div style={containerStyles}>
             <div style={glassesContainerStyles}>
-              <img style={glassesGreyStyles} src={glassesGreyImgSrc} alt='' />
-              <img style={glassesWhiteStyles} src={glassesWhiteImgSrc} alt='' />
+              <img style={
+                Object.assign({}, glassesStyles, {
+                  opacity: `${interpolated.glasses[1].opacity.val}`,
+                  transform: `scale(0.99) translate3d(0, ${interpolated.glasses[1].y.val}px, 0)`
+                })
+              } src={glassesGreyImgSrc} alt='' />
+              <img style={
+                Object.assign({}, glassesStyles, {
+                  opacity: `${interpolated.glasses[0].opacity.val}`,
+                  transform: `translate3d(0, ${interpolated.glasses[0].y.val}px, 10px)`
+                })
+              } src={glassesWhiteImgSrc} alt='' />
             </div>
-            <h1 style={Object.assign({}, headerStyles, animationStyles(interpolated[0]))}>Theodor Vararu</h1>
-            <Link style={animationStyles(interpolated[1])} href='https://vararu.org/cv'>Resumé</Link>
-            <Link style={animationStyles(interpolated[2])} href='https://blog.vararu.org/'>Blog</Link>
-            <Link style={animationStyles(interpolated[3])} href='https://github.com/tvararu'>GitHub</Link>
-            <Link style={animationStyles(interpolated[4])} href='mailto:theo@vararu.org'>Email</Link>
+            <h1 style={Object.assign({}, headerStyles, animationStyles(interpolated.words[0]))}>Theodor Vararu</h1>
+            <Link style={animationStyles(interpolated.words[1])} href='https://vararu.org/cv'>Resumé</Link>
+            <Link style={animationStyles(interpolated.words[2])} href='https://blog.vararu.org/'>Blog</Link>
+            <Link style={animationStyles(interpolated.words[3])} href='https://github.com/tvararu'>GitHub</Link>
+            <Link style={animationStyles(interpolated.words[4])} href='mailto:theo@vararu.org'>Email</Link>
           </div>
         }
       </Spring>
